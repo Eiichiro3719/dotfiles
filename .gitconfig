@@ -1,0 +1,47 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+  name = xxx
+  email = 
+[credential]
+  helper = osxkeychain
+[url "https://github.com/"]
+  insteadOf = git@github.com:
+[core]
+  quotepath = false
+[pack]
+  windowMemory = 1g
+  threads = 2
+[pull]
+  rebase = true
+[diff]
+  tool = vscode
+[merge]
+  tool = vscode
+[difftool "vscode"]
+  cmd = code --wait --diff \"$LOCAL\" \"$REMOTE\"
+[mergetool]
+  prompt = false
+  keepBackup = false
+[mergetool "vscode"]
+  cmd = code --wait \"$MERGED\"
+  trustExitCode = false
+[alias]
+  alias   = config --get-regexp alias.*
+  b       = branch
+  co      = checkout
+  cp      = cherry-pick
+  st      = status --short --branch
+  df      = difftool -d
+  dn      = diff --name-only
+  lg      = log --graph       --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  lga     = log --graph --all --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  l       = !git lg -5
+  ll      = !git lg -10
+  lll     = !git lg -15
+  unstage = reset HEAD
+  cancel  = reset --soft HEAD^
+  refresh = reset --hard HEAD
+  wip     = commit -am WIP
+  yo      = !echo yo! men
+  cc      = !git format-patch `git rev-parse --abbrev-ref HEAD`..`git rev-parse --abbrev-ref @{-1}` --stdout | git apply --check
